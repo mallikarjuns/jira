@@ -19,6 +19,8 @@ RUN set -x \
     && chmod -R 700            "${JIRA_INSTALL}/logs" \
     && chmod -R 700            "${JIRA_INSTALL}/temp" \
     && chmod -R 700            "${JIRA_INSTALL}/work" \
+    && sed --in-place          "s/java version/openjdk version/g" "${JIRA_INSTALL}/bin/check-java.sh" \
+    && echo -e                 "\njira.home=$JIRA_HOME" >> "${JIRA_INSTALL}/atlassian-jira/WEB-INF/classes/jira-application.properties" \
     && touch -d "@0"           "${JIRA_INSTALL}/conf/server.xml"
 EXPOSE 8080
 VOLUME ["/var/atlassian/jira", "/opt/atlassian/jira/logs"]
