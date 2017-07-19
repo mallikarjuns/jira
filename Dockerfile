@@ -23,6 +23,7 @@ RUN set -x \
 EXPOSE 8082
 VOLUME ["/var/atlassian/jira", "/opt/atlassian/jira/logs"]
 WORKDIR /var/atlassian/jira
+ADD build/server.xml /opt/atlassian/jira/conf
 COPY "docker-entrypoint.sh" "/"
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/opt/atlassian/jira/bin/catalina.sh", "run"]
