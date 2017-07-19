@@ -20,7 +20,7 @@ RUN set -x \
     && curl -Ls                "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.38.tar.gz" | tar -xz --directory "${JIRA_INSTALL}/lib" --strip-components=1 --no-same-owner "mysql-connector-java-5.1.38/mysql-connector-java-5.1.38-bin.jar" \
     && sed --in-place          "s/java version/openjdk version/g" "${JIRA_INSTALL}/bin/check-java.sh" \
     && touch -d "@0"           "${JIRA_INSTALL}/conf/server.xml"
-EXPOSE 8080
+EXPOSE 8082
 VOLUME ["/var/atlassian/jira", "/opt/atlassian/jira/logs"]
 WORKDIR /var/atlassian/jira
 COPY "docker-entrypoint.sh" "/"
